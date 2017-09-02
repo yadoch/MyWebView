@@ -1,7 +1,12 @@
 package tw.com.abc.mywebview;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +16,7 @@ import android.webkit.WebViewClient;
 
 import java.net.URI;
 
+
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
 
@@ -19,11 +25,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        webView=(WebView) findViewById(R.id.webview);
-        initwebView();
+        if(ContextCompat.checkSelfPermission(this,
 
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                  != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},123);
+        }else {
+            init();
+
+        }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        init();
+    }
+
+    private void init(){
+        webView = (WebView) findViewById(R.id.webview);
+        initwebView();
+    }
     private void  initwebView(){
         WebViewClient client = new WebViewClient();
         webView.setWebViewClient(client);
