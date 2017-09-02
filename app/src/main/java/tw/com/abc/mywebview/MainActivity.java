@@ -31,9 +31,12 @@ public class MainActivity extends AppCompatActivity {
         // 開啟javascript 啟用功能
         WebSettings setting =webView.getSettings();
         setting.setJavaScriptEnabled(true);
-        // 手機內部網頁
-        webView.loadUrl("file:///android_asset/brad.html");
-        //webView.loadUrl("file:///android_asset/mymap.html");
+
+        // 手機內部網頁-配合test1()
+        //webView.loadUrl("file:///android_asset/brad.html");
+
+        // Google map
+        webView.loadUrl("file:///android_asset/mymap.html");
     }
 
     public void  test1(View view){
