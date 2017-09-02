@@ -28,26 +28,36 @@ public class MainActivity extends AppCompatActivity {
         WebViewClient client = new WebViewClient();
         webView.setWebViewClient(client);
 
+        // 開啟javascript 啟用功能
         WebSettings setting =webView.getSettings();
-
-        // 1.
-        //webView.loadUrl("http://www.tcca.org.tw");
-        // 2.
-        //webView.loadUrl("file:///android_asset/brad.html");
-        webView.loadUrl("file:///android_asset/mymap.html");
+        setting.setJavaScriptEnabled(true);
+        // 手機內部網頁
+        webView.loadUrl("file:///android_asset/brad.html");
+        //webView.loadUrl("file:///android_asset/mymap.html");
     }
 
     public void  test1(View view){
-        /*
-        Uri uri = Uri.parse("http://www.tcca.org.tw");
-        Intent it = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(it);
-        */
-        //webView.loadUrl("javascript:test2()");
+
+        webView.loadUrl("javascript:test2('brad')");
 
     }
     public void  test2(View view){
+        //回到上一頁
+        webView.goBack();
+    }
+    //=======================================
+    public void  openweb(View view){
+        // 用WebView開啟網頁
+        webView.loadUrl("http://www.tcca.org.tw");
 
+    }
+    public void  newinit(View view){
+         /*
+                透過uri 開新頁面-和本主題無關
+        */
+        Uri uri = Uri.parse("http://www.tcca.org.tw");
+        Intent it = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(it);
 
     }
 }
