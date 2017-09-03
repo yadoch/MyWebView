@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         setting.setJavaScriptEnabled(true);
 
         // 自訂 javascrit 類別
-        webView.addJavascriptInterface(new MyJS(),"brad");
+        webView.addJavascriptInterface(new MyJS(),"brad1");
         // 手機內部網頁-配合test1()
         webView.loadUrl("file:///android_asset/brad.html");
 
@@ -132,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     public class MyJS{
         @JavascriptInterface
-        public String m1(){
-            Log.i("geoff","m1()");
+        public String m1(String name){
+            Log.i("geoff","m1():"+name);
             return "";
         }
     }
